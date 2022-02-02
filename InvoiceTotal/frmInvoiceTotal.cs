@@ -16,8 +16,7 @@ namespace InvoiceTotal {
         }
 
         //8.1.2 declare class variables for array and list here
-        decimal[] invoiceTotals = new decimal[5];
-        int index = 0;
+        List<decimal> invoiceTotals = new List<decimal>();
 
         private void btnCalculate_Click(object sender, EventArgs e) {
             try {
@@ -44,7 +43,7 @@ namespace InvoiceTotal {
                         //8.1.6 try..catch if array is overrun
                         try {
                             //8.1.2 add invoice total to array
-                            invoiceTotals[index++] = invoiceTotal;
+                            invoiceTotals.Add(invoiceTotal);
                         }catch(Exception) {
                             MessageBox.Show("Index is full. Invoice totals ignored", "Invoice Totals");
                         }
@@ -71,7 +70,7 @@ namespace InvoiceTotal {
             // TODO: add code that displays dialog boxes here
             string message = string.Empty;
             //8.1.7 Sort the array
-            Array.Sort(invoiceTotals);
+            invoiceTotals.Sort();
             foreach (decimal invoiceTotal in invoiceTotals) {
                 if (invoiceTotal > 0)
                     message += invoiceTotal.ToString("c") + "\n";
